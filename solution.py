@@ -18,6 +18,10 @@ def add_virtual_column(df: pandas.DataFrame, role: str, new_column: str) -> pand
     if not isinstance(df, pandas.DataFrame) or not isinstance(role, str) or not isinstance(new_column, str):
         return(pandas.DataFrame([]))
     
+    # I'm veryfing if the input contains correct characters
+    if re.search(r'[^a-zA-Z_+\-* ]', role):
+        return(pandas.DataFrame([]))
+    
     # Transforming input role from str into list of str
     split_text = re.findall(r'\w+|[+\-*]', role)
         
